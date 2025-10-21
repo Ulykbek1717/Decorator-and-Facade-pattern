@@ -26,7 +26,8 @@ public class CartItem {
 
     @Override
     public String toString() {
-        return String.format("%s × %d = $%.2f", item.toString(), qty, getTotal());
+        return item + " × " + qty + " = $" + getTotal();
+
     }
 }
 
