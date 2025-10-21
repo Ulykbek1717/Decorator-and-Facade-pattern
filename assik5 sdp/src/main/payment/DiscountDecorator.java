@@ -1,28 +1,28 @@
 package main.payment;
 
 public class DiscountDecorator implements Payment {
-    private final Payment payment;
-    private final double discountPercent;
+    private  Payment base;
+    private  double percent;
 
-    public DiscountDecorator(double discountPercent, Payment payment) {
-        this.discountPercent = discountPercent;
-        this.payment = payment;
+    public DiscountDecorator(double percent, Payment base) {
+        this.percent = percent;
+        this.base = base;
     }
 
     @Override
     public void pay(double amount) {
-        double discountedAmount = amount * (1 - discountPercent / 100);
-        System.out.printf("Applied %.1f%% discount → Final: $%.2f%n", discountPercent, discountedAmount);
-        payment.pay(discountedAmount);
+        double discountedAmount = amount * (1 - percent / 100);
+        System.out.println("Discount " + percent + "% applied. Final amount: $" + discountedAmount);
+        base.pay(discountedAmount);
     }
 
     @Override
     public void addCashback(double amount) {
-        payment.addCashback(amount);
+        base.addCashback(amount);
     }
 
     @Override
     public void addMoney(double amount) {
-        payment.addMoney(amount);
+        base.addMoney(amount);
     }
 }
