@@ -5,36 +5,38 @@ import main.payment.*;
 import java.util.List;
 
 public class PaymentService {
-    private final Customer customer;
+    private   Customer customer;
 
     public PaymentService(Customer customer) {
         this.customer = customer;
-        seed();
+        DefaultMethods();
     }
 
-    private void seed() {
+    private void DefaultMethods() {
         customer.addPaymentMethod(new CreditCardPayment("VISA", 500.00));
-        customer.addPaymentMethod(new PayPalPayment("user@example.com", 300.00));
+        customer.addPaymentMethod(new PayPalPayment("dovutbekov@inbox.ru", 300.00));
     }
 
-    public void addCard(String name, double bal) { 
-        customer.addPaymentMethod(new CreditCardPayment(name, bal));
+    public void addCard(String name, double balance) {
+        customer.addPaymentMethod(new CreditCardPayment(name, balance));
     }
-    public void addPayPal(String email, double bal) {
-        customer.addPaymentMethod(new PayPalPayment(email, bal));
+    public void addPayPal(String email, double balance) {
+        customer.addPaymentMethod(new PayPalPayment(email, balance));
     }
     public void topUp(int index, double amount) {
-        var list = customer.getPaymentMethods();
+        List<Payment> list = customer.getPaymentMethods();
+
         if (index < 0 || index >= list.size()) {
-            System.out.println("Invalid number.");
+            System.out.println("Invalid payment method number.");
             return;
         }
+
         list.get(index).addMoney(amount);
     }
     public void show() { 
         customer.showPaymentMethods();
     }
-    public List<Payment> methods() {
+    public List<Payment> getMethods() {
         return customer.getPaymentMethods();
     }
 }
