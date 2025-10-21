@@ -23,6 +23,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return String.format("#%d %s — $%.2f", id, name, price);
+        return "#" + id + " " + name + " — $" + price;
     }
 }
