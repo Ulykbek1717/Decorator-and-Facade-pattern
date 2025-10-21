@@ -1,39 +1,31 @@
 package main.payment;
 
 public class FraudDetectionDecorator implements Payment {
-    private final Payment payment;
+    private  Payment base;
 
-    public FraudDetectionDecorator(Payment payment) {
-        this.payment = payment;
+    public FraudDetectionDecorator(Payment base) {
+        this.base = base;
     }
 
-    private boolean isSafe(double amount) {
-    if (amount <= 0) {
-        System.out.println("Amount must be greater than 0");
-        return false;
-    }
-
-    return true;
-}
-
-
+    
     @Override
     public void pay(double amount) {
-        if (isSafe(amount)) {
-            System.out.println("Transaction passed check.");
-            payment.pay(amount);
-        } else {
-            System.out.printf("Fraud detected! $%.2f%n", amount);
+        if (amount <= 0) {
+            System.out.println("Fraud detected! Invalid amount: $" + amount);
+            return;
         }
+
+        System.out.println("Transaction passed check.");
+        base.pay(amount);
     }
 
     @Override
     public void addCashback(double amount) {
-        payment.addCashback(amount);
+        base.addCashback(amount);
     }
 
     @Override
     public void addMoney(double amount) {
-        payment.addMoney(amount);
+        base.addMoney(amount);
     }
 }
