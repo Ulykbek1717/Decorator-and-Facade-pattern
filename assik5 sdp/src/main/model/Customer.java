@@ -29,13 +29,12 @@ public class Customer {
             return;
         }
         for (int i = 0; i < paymentMethods.size(); i++) {
-            System.out.printf("%d. %s%n", i + 1, paymentMethods.get(i).toString());
+            System.out.println((i + 1) + ". " + paymentMethods.get(i));
         }
     }
 
     @Override
     public String toString() {
-        return String.format("%s | Cashback: $%.2f | Cards: %d",
-                name, cashback, paymentMethods.size());
+        return name + " Cashback: $" + cashback + " Cards: " + paymentMethods.size();
     }
 }
