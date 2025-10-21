@@ -6,6 +6,7 @@ public class CheckoutFacade {
     private Payment basePayment;
 
     public CheckoutFacade(Payment payment) {
+
         this.basePayment = payment;
     }
 
@@ -27,10 +28,12 @@ public class CheckoutFacade {
     }
 
     private void sendReceipt(double amount) {
-        System.out.printf("Payment of $%.2f processed.%n", amount);
+
+        System.out.println("Payment of $" + amount + " processed.");
     }
 
     private void sendNotification() {
-        System.out.println("Notification: Thank you for shopping with us!");
+
+        System.out.println("Thank you for shopping with us!");
     }
 }
