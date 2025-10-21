@@ -10,7 +10,8 @@ public class CheckoutCoordinator {
     private final Customer customer;
 
     public CheckoutCoordinator(Cart cart, Customer customer) {
-        this.cart = cart; this.customer = customer;
+        this.cart = cart;
+        this.customer = customer;
     }
 
     public boolean process(int paymentIndex, double amount, double discount, double cashback, boolean fraud) {
