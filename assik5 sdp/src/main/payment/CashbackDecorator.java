@@ -1,29 +1,29 @@
 package main.payment;
 
 public class CashbackDecorator implements Payment {
-    private final double cashbackPercent;
-    private final Payment payment;
+    private  double percent;
+    private  Payment base;
 
-    public CashbackDecorator(double cashbackPercent, Payment payment) {
-        this.cashbackPercent = cashbackPercent;
-        this.payment = payment;
+    public CashbackDecorator(double percent, Payment base) {
+        this.percent = percent;
+        this.base = base;
     }
 
     @Override
     public void pay(double amount) {
-        payment.pay(amount);
-        double cashbackAmount = amount * cashbackPercent / 100;
-        System.out.printf("You earned: $%.2f%n", cashbackAmount);
-        payment.addCashback(cashbackAmount);
+        base.pay(amount);
+        double cashbackAmount = amount * percent / 100;
+        System.out.println("Cashback earned: $" + String.format("%.2f", cashbackAmount));
+        base.addCashback(cashbackAmount);
     }
 
     @Override
     public void addCashback(double amount) {
-        payment.addCashback(amount);
+        base.addCashback(amount);
     }
 
     @Override
     public void addMoney(double amount) {
-        payment.addMoney(amount);
+        base.addMoney(amount);
     }
 }
